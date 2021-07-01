@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tahaluf.CrimeManagementSystem.API", "Tahaluf.CrimeManagementSystem.API\Tahaluf.CrimeManagementSystem.API.csproj", "{6BBC534E-20F3-4582-B42F-111EDEAF4C34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tahaluf.CrimeManagementSystem.Core", "Tahaluf.CrimeManagementSystem.Core\Tahaluf.CrimeManagementSystem.Core.csproj", "{E6D3256D-160F-45C4-8DE3-8617C5DA2057}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tahaluf.CrimeManagementSystem.Infra", "Tahaluf.CrimeManagementSystem.Infra\Tahaluf.CrimeManagementSystem.Infra.csproj", "{5D441B99-A1C2-4CEE-9AB1-710BD9525FDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6BBC534E-20F3-4582-B42F-111EDEAF4C34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BBC534E-20F3-4582-B42F-111EDEAF4C34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BBC534E-20F3-4582-B42F-111EDEAF4C34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BBC534E-20F3-4582-B42F-111EDEAF4C34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6D3256D-160F-45C4-8DE3-8617C5DA2057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6D3256D-160F-45C4-8DE3-8617C5DA2057}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6D3256D-160F-45C4-8DE3-8617C5DA2057}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6D3256D-160F-45C4-8DE3-8617C5DA2057}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D441B99-A1C2-4CEE-9AB1-710BD9525FDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D441B99-A1C2-4CEE-9AB1-710BD9525FDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D441B99-A1C2-4CEE-9AB1-710BD9525FDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D441B99-A1C2-4CEE-9AB1-710BD9525FDC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {79EAD114-6D8B-4B88-AE49-6057E3911A4E}
+	EndGlobalSection
+EndGlobal

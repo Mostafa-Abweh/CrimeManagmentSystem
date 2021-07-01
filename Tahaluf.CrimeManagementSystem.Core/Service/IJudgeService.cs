@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Tahaluf.CrimeManagementSystem.Core.Data;
+using Tahaluf.CrimeManagementSystem.Core.DTOs;
+
+namespace Tahaluf.CrimeManagementSystem.Core.Service
+{
+   public interface IJudgeService
+    {
+        Judge Create(Judge judge);
+        Judge Update(Judge judge);
+        List<Judge> GetAll();
+        Judge GetById(int id);
+        bool Delete(int id);
+        List<Judge> Search(JudgeDTO judgeDTO);
+    }
+}
