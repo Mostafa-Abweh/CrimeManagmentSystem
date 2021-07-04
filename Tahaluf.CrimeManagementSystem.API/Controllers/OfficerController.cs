@@ -26,12 +26,13 @@ namespace Tahaluf.CrimeManagementSystem.API.Controllers
         { return OfficerService.Create(officer); }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<Officer>), StatusCodes.Status200OK)]
-        public List<Officer> GetAll()
+        [ProducesResponseType(typeof(Task<List<Officer>>), StatusCodes.Status200OK)]
+        public Task<List<Officer>> GetAll()
         { return OfficerService.GetAll(); }
 
         [HttpGet("{Id}")]
-        public Officer GetById(int id)
+        [ProducesResponseType(typeof(Task<List<Officer>>), StatusCodes.Status200OK)]
+        public Task<List<Officer>>  GetById(int id)
         { return OfficerService.GetById(id); }
 
         [HttpPut]

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 using Tahaluf.CrimeManagementSystem.Core.Repository;
 using Tahaluf.CrimeManagementSystem.Core.Service;
@@ -15,7 +16,7 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Service
             this.FIRRepoditory = _fIRRepoditory;
         }
 
-        public List<FirstInformationReport> GetAll()
+        public Task<List<FirstInformationReport>> GetAll()
         {
             return FIRRepoditory.GetAll();
         }
@@ -33,7 +34,7 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Service
         {
             return FIRRepoditory.Delete(id);
         }
-        public FirstInformationReport GetById(int id)
+        public Task<List<FirstInformationReport>> GetById(int id)
         {
             return FIRRepoditory.GetById(id);
         }

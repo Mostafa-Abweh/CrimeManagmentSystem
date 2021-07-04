@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Common;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 using Tahaluf.CrimeManagementSystem.Core.Repository;
@@ -34,11 +36,11 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = _dBContext.Connection.ExecuteAsync("InsertLawyer", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
-        public List<Lawyer> GetAll()
+        public async Task<List<Lawyer>> GetAll()
         {
-            List<Lawyer> result = (List<Lawyer>)_dBContext.Connection.Query<Lawyer>("GetAllLawyer", commandType: CommandType.StoredProcedure);
+            var result =await _dBContext.Connection.QueryAsync<Lawyer>("GetAllLawyer", commandType: CommandType.StoredProcedure);
 
-            return result;
+            return result.ToList();
         }
         public int Update(Lawyer lawyer)
         {
@@ -65,12 +67,12 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = _dBContext.Connection.ExecuteAsync("DeleteLawyer", p, commandType: CommandType.StoredProcedure);
             return true;
         }
-        public Lawyer GetById(int id)
+        public async Task<List<Lawyer>> GetById(int id)
         {
             var p = new DynamicParameters();
             p.Add("@LawyerId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            Lawyer result = (Lawyer)_dBContext.Connection.Query<Lawyer>("GetByIdLawyer", p, commandType: CommandType.StoredProcedure);
-            return result;
+            var result = await _dBContext.Connection.QueryAsync<Lawyer>("GetByIdLawyer", p, commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
     }
 }

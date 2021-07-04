@@ -25,12 +25,12 @@ namespace Tahaluf.CrimeManagementSystem.API.Controllers
         public Judge Create([FromBody] Judge judge)
         { return _judgeService.Create(judge); }
         [HttpGet]
-        [ProducesResponseType(typeof(List<Judge>), StatusCodes.Status200OK)]
-        public List<Judge> GetAll()
+        [ProducesResponseType(typeof(Task<List<Judge>>), StatusCodes.Status200OK)]
+        public Task<List<Judge>> GetAll()
         { return _judgeService.GetAll(); }
         [HttpGet("{Id}")]
-        [ProducesResponseType(typeof(Judge), StatusCodes.Status200OK)]
-        public Judge GetById(int id)
+        [ProducesResponseType(typeof(Task<List<Judge>>), StatusCodes.Status200OK)]
+        public Task<List<Judge>> GetById(int id)
         { return _judgeService.GetById(id); }
         [HttpPut]
         [ProducesResponseType(typeof(Judge), StatusCodes.Status200OK)]
@@ -46,9 +46,9 @@ namespace Tahaluf.CrimeManagementSystem.API.Controllers
 
         [HttpPost]
         [Route("Search")]
-        [ProducesResponseType(typeof(List<Judge>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Task<List<Judge>>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public List<Judge> Search([FromBody] JudgeDTO courseDTO)
+        public Task<List<Judge>> Search([FromBody] JudgeDTO courseDTO)
         { return _judgeService.Search(courseDTO); }
     }
 }

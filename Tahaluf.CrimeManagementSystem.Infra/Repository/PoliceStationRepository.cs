@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Common;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 using Tahaluf.CrimeManagementSystem.Core.Repository;
@@ -29,11 +31,11 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = _dBContext.Connection.ExecuteAsync("InsertPoliceStation", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
-        public List<PoliceStation> GetAll()
+        public async  Task<List<PoliceStation>> GetAll()
         {
-            List<PoliceStation> result = (List<PoliceStation>)_dBContext.Connection.Query<PoliceStation>("GetAllPoliceStation", commandType: CommandType.StoredProcedure);
+            var result = await _dBContext.Connection.QueryAsync<PoliceStation>("GetAllPoliceStation", commandType: CommandType.StoredProcedure);
 
-            return result;
+            return result.ToList();
         }
         public int Update(PoliceStation PS)
         {
@@ -57,12 +59,12 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = _dBContext.Connection.ExecuteAsync("DeletePoliceStation", p, commandType: CommandType.StoredProcedure);
             return true;
         }
-        public PoliceStation GetById(int id)
+        public async Task<List<PoliceStation>> GetById(int id)
         {
             var p = new DynamicParameters();
             p.Add("@PoliceStationId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            PoliceStation result = (PoliceStation)_dBContext.Connection.Query<PoliceStation>("GetByIdPoliceStation", p, commandType: CommandType.StoredProcedure);
-            return result;
+            var result = await _dBContext.Connection.QueryAsync<PoliceStation>("GetByIdPoliceStation", p, commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
     }
 }

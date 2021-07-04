@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Common;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 using Tahaluf.CrimeManagementSystem.Core.DTOs;
@@ -35,11 +36,11 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = _dBContext.Connection.ExecuteAsync("InsertJudge", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
-        public List<Judge> GetAll()
+        public async Task<List<Judge>> GetAll()
         {
-            List<Judge> result = (List<Judge>)_dBContext.Connection.Query<Judge>("GetAllJudge", commandType: CommandType.StoredProcedure);
+            var result = await _dBContext.Connection.QueryAsync<Judge>("GetAllJudge", commandType: CommandType.StoredProcedure);
            
-            return result;
+            return result.ToList();
         }
         public int Update(Judge judge)
         {
@@ -68,15 +69,15 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = _dBContext.Connection.ExecuteAsync("DeleteJudge", p, commandType: CommandType.StoredProcedure);
             return true;
         }
-        public Judge GetById(int id)
+        public async Task<List<Judge>> GetById(int id)
         {
             var p = new DynamicParameters();
             p.Add("@JudgeId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            Judge result =(Judge) _dBContext.Connection.Query<Judge>("GetByIdJudge",p, commandType: CommandType.StoredProcedure);
-            return result;
+            var result =await _dBContext.Connection.QueryAsync<Judge>("GetByIdJudge",p, commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
 
-        public List<Judge> Search(JudgeDTO judgeDTO)
+        public async Task<List<Judge>> Search(JudgeDTO judgeDTO)
         {
             var p = new DynamicParameters();
             if (judgeDTO.DateFrom == null && judgeDTO.DateTo != null)
@@ -91,7 +92,7 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             p.Add("@DateFrom", judgeDTO.DateFrom, dbType: DbType.DateTime, direction: ParameterDirection.Input);
             p.Add("@DateTo", judgeDTO.DateTo, dbType: DbType.DateTime, direction: ParameterDirection.Input);
             p.Add("@CrimeTitle", judgeDTO.CrimeTitle, dbType: DbType.String, direction: ParameterDirection.Input);
-            IEnumerable<Judge> result = (List<Judge>)_dBContext.Connection.Query<Judge>("SearchJudge", p, commandType: CommandType.StoredProcedure);
+            var result = await _dBContext.Connection.QueryAsync<Judge>("SearchJudge", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
     }

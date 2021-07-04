@@ -24,12 +24,12 @@ namespace Tahaluf.CrimeManagementSystem.API.Controllers
         public Permission Create([FromBody] Permission permission)
         { return _permissionService.Create(permission); }
         [HttpGet]
-        [ProducesResponseType(typeof(List<Permission>), StatusCodes.Status200OK)]
-        public List<Permission> GetAll()
+        [ProducesResponseType(typeof(Task<List<Permission>>), StatusCodes.Status200OK)]
+        public Task<List<Permission>> GetAll()
         { return _permissionService.GetAll(); }
         [HttpGet("{Id}")]
-        [ProducesResponseType(typeof(Permission), StatusCodes.Status200OK)]
-        public Permission GetById(int id)
+        [ProducesResponseType(typeof(Task<List<Permission>>), StatusCodes.Status200OK)]
+        public Task<List<Permission>> GetById(int id)
         { return _permissionService.GetById(id); }
         [HttpPut]
         [ProducesResponseType(typeof(Permission), StatusCodes.Status200OK)]

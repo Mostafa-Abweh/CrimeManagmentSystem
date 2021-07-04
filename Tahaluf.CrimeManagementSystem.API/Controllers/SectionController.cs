@@ -25,12 +25,12 @@ namespace Tahaluf.CrimeManagementSystem.API.Controllers
         public Section Create([FromBody] Section section)
         { return _sectionService.Create(section); }
         [HttpGet]
-        [ProducesResponseType(typeof(List<Section>), StatusCodes.Status200OK)]
-        public List<Section> GetAll()
+        [ProducesResponseType(typeof(Task<List<Section>>), StatusCodes.Status200OK)]
+        public Task<List<Section>> GetAll()
         { return _sectionService.GetAll(); }
         [HttpGet("{Id}")]
-        [ProducesResponseType(typeof(Section), StatusCodes.Status200OK)]
-        public Section GetById(int id)
+        [ProducesResponseType(typeof(Task<List<Section>>), StatusCodes.Status200OK)]
+        public Task<List<Section>> GetById(int id)
         { return _sectionService.GetById(id); }
         [HttpPut]
         [ProducesResponseType(typeof(Section), StatusCodes.Status200OK)]
@@ -45,9 +45,9 @@ namespace Tahaluf.CrimeManagementSystem.API.Controllers
         }
         [HttpPost]
         [Route("Search")]
-        [ProducesResponseType(typeof(List<Section>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Task<List<Section>>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public List<Section> Search([FromBody] SectionDTO courseDTO)
+        public Task<List<Section>> Search([FromBody] SectionDTO courseDTO)
         { return _sectionService.Search(courseDTO); }
 
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 using Tahaluf.CrimeManagementSystem.Core.Repository;
 using Tahaluf.CrimeManagementSystem.Core.Service;
@@ -15,7 +16,7 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Service
             this.OfficerRepository = _officerRepository;
         }
 
-        public List<Officer> GetAll()
+        public Task<List<Officer>> GetAll()
         {
             return OfficerRepository.GetAll();
         }
@@ -33,7 +34,7 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Service
         {
             return OfficerRepository.Delete(id);
         }
-        public Officer GetById(int id)
+        public Task<List<Officer>> GetById(int id)
         {
             return OfficerRepository.GetById(id);
         }

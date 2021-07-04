@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Common;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 using Tahaluf.CrimeManagementSystem.Core.DTOs;
@@ -27,11 +28,11 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = _dBContext.Connection.ExecuteAsync("InsertVictim", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
-        public List<Victim> GetAll()
+        public async Task<List<Victim>> GetAll()
         {
-            List<Victim> result = (List<Victim>)_dBContext.Connection.Query<Victim>("GetAllVictim", commandType: CommandType.StoredProcedure);
+            var result =  await _dBContext.Connection.QueryAsync<Victim>("GetAllVictim", commandType: CommandType.StoredProcedure);
 
-            return result;
+            return result.ToList();
         }
         public int Update(Victim victim)
         {
@@ -52,20 +53,20 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = _dBContext.Connection.ExecuteAsync("DeleteVictim", p, commandType: CommandType.StoredProcedure);
             return true;
         }
-        public Victim GetById(int id)
+        public async Task<List<Victim>> GetById(int id)
         {
             var p = new DynamicParameters();
             p.Add("@VictimId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            Victim result = (Victim)_dBContext.Connection.Query<Victim>("GetByIdVictim", p, commandType: CommandType.StoredProcedure);
-            return result;
+           var result = await _dBContext.Connection.QueryAsync<Victim>("GetByIdVictim", p, commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
-        public List<Victim> Search(VictimDTO victimDTO)
+        public async Task<List<Victim>> Search(VictimDTO victimDTO)
         {
             var p = new DynamicParameters();
             p.Add("@SectionName", victimDTO.VictimName, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@SectionName", victimDTO.IdentityNumber, dbType: DbType.String, direction: ParameterDirection.Input);
             p.Add("@CrimeId", victimDTO.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            IEnumerable<Victim> result = (List<Victim>)_dBContext.Connection.Query<Victim>("SearchJudge", p, commandType: CommandType.StoredProcedure);
+           var result = await _dBContext.Connection.QueryAsync<Victim>("SearchJudge", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
     }

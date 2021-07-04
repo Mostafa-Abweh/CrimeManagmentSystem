@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 using Tahaluf.CrimeManagementSystem.Core.DTOs;
 
@@ -11,9 +12,9 @@ namespace Tahaluf.CrimeManagementSystem.Core.Repository
         int Create(Section section);
         int Update(Section section);
         bool Delete(int id);
-        List<Section> GetAll();
-        Section GetById(int id);
+        Task<List<Section>> GetAll();
+        Task<List<Section>> GetById(int id);
 
-        List<Section> Search(SectionDTO sectionDTO);
+        Task<List<Section>> Search(SectionDTO sectionDTO);
     }
 }

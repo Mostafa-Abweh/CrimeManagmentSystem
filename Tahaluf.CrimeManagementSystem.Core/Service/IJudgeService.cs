@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 using Tahaluf.CrimeManagementSystem.Core.DTOs;
 
@@ -10,9 +11,9 @@ namespace Tahaluf.CrimeManagementSystem.Core.Service
     {
         Judge Create(Judge judge);
         Judge Update(Judge judge);
-        List<Judge> GetAll();
-        Judge GetById(int id);
+        Task<List<Judge>> GetAll();
+        Task<List<Judge>> GetById(int id);
         bool Delete(int id);
-        List<Judge> Search(JudgeDTO judgeDTO);
+        Task<List<Judge>> Search(JudgeDTO judgeDTO);
     }
 }

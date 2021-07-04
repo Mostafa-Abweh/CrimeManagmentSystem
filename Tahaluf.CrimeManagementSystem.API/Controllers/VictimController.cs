@@ -26,12 +26,12 @@ namespace Tahaluf.CrimeManagementSystem.API.Controllers
         public Victim Create([FromBody] Victim victim)
         { return _victimService.Create(victim); }
         [HttpGet]
-        [ProducesResponseType(typeof(List<Victim>), StatusCodes.Status200OK)]
-        public List<Victim> GetAll()
+        [ProducesResponseType(typeof(Task<List<Victim>>), StatusCodes.Status200OK)]
+        public Task<List<Victim>> GetAll()
         { return _victimService.GetAll(); }
         [HttpGet("{Id}")]
         [ProducesResponseType(typeof(Victim), StatusCodes.Status200OK)]
-        public Victim GetById(int id)
+        public Task<List<Victim>> GetById(int id)
         { return _victimService.GetById(id); }
         [HttpPut]
         [ProducesResponseType(typeof(Victim), StatusCodes.Status200OK)]
@@ -46,9 +46,9 @@ namespace Tahaluf.CrimeManagementSystem.API.Controllers
         }
         [HttpPost]
         [Route("Search")]
-        [ProducesResponseType(typeof(List<Victim>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Task<List<Victim>>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public List<Victim> Search([FromBody] VictimDTO victimDTO)
+        public Task<List<Victim>> Search([FromBody] VictimDTO victimDTO)
         { return _victimService.Search(victimDTO); }
 
     }

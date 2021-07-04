@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 
 namespace Tahaluf.CrimeManagementSystem.Core.Repository
@@ -10,7 +11,7 @@ namespace Tahaluf.CrimeManagementSystem.Core.Repository
         int Create(Evidence evidence);
         int Update(Evidence evidence);
         bool Delete(int id);
-        List<Evidence> GetAll();
-        Evidence GetById(int id);
+        Task<List<Evidence>> GetAll();
+        Task<List<Evidence>> GetById(int id);
     }
 }

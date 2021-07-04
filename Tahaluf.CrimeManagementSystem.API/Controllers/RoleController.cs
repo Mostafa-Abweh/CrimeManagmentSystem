@@ -28,12 +28,13 @@ namespace Tahaluf.CrimeManagementSystem.API.Controllers
             { return RoleService.Create(role); }
 
             [HttpGet]
-            [ProducesResponseType(typeof(List<Role>), StatusCodes.Status200OK)]
-            public List<Role> GetAll()
+            [ProducesResponseType(typeof(Task<List<Role>>), StatusCodes.Status200OK)]
+            public Task<List<Role>> GetAll()
             { return RoleService.GetAll(); }
 
             [HttpGet("{Id}")]
-            public Role GetById(int id)
+            [ProducesResponseType(typeof(Task<List<Role>>), StatusCodes.Status200OK)]
+            public Task<List<Role>> GetById(int id)
             { return RoleService.GetById(id); }
 
             [HttpPut]

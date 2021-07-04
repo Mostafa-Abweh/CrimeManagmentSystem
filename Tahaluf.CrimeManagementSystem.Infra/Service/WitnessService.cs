@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 using Tahaluf.CrimeManagementSystem.Core.Repository;
 using Tahaluf.CrimeManagementSystem.Core.Service;
@@ -15,7 +16,7 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Service
             this.WitnessRepository = _witnessRepository;
         }
 
-        public List<Witness> GetAll()
+        public Task<List<Witness>> GetAll()
         {
             return WitnessRepository.GetAll();
         }
@@ -33,7 +34,7 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Service
         {
             return WitnessRepository.Delete(id);
         }
-        public Witness GetById(int id)
+        public Task<List<Witness>> GetById(int id)
         {
             return WitnessRepository.GetById(id);
         }

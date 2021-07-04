@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 using Tahaluf.CrimeManagementSystem.Core.DTOs;
 using Tahaluf.CrimeManagementSystem.Core.Repository;
@@ -16,7 +17,7 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Service
             this._judgeRepository = _judgeRepository;
         }
 
-        public List<Judge> GetAll()
+        public Task<List<Judge>> GetAll()
         {
             return _judgeRepository.GetAll();
         }
@@ -34,11 +35,11 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Service
         {
             return _judgeRepository.Delete(id);
         }
-        public Judge GetById(int id)
+        public Task<List<Judge>> GetById(int id)
         {
             return _judgeRepository.GetById(id);
         }
-        public List<Judge> Search(JudgeDTO judgeDTO)
+        public Task<List<Judge>> Search(JudgeDTO judgeDTO)
         {
             return _judgeRepository.Search(judgeDTO);
         }

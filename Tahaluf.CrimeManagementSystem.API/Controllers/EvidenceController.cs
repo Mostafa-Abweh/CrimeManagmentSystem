@@ -24,12 +24,12 @@ namespace Tahaluf.CrimeManagementSystem.API.Controllers
         public Evidence Create([FromBody] Evidence evidence)
         { return _evidenceService.Create(evidence); }
         [HttpGet]
-        [ProducesResponseType(typeof(List<Evidence>), StatusCodes.Status200OK)]
-        public List<Evidence> GetAll()
+        [ProducesResponseType(typeof(Task<List<Evidence>>), StatusCodes.Status200OK)]
+        public Task<List<Evidence>> GetAll()
         { return _evidenceService.GetAll(); }
         [HttpGet("{Id}")]
-        [ProducesResponseType(typeof(Evidence), StatusCodes.Status200OK)]
-        public Evidence GetById(int id)
+        [ProducesResponseType(typeof(Task<List<Evidence>>), StatusCodes.Status200OK)]
+        public Task<List<Evidence>> GetById(int id)
         { return _evidenceService.GetById(id); }
         [HttpPut]
         [ProducesResponseType(typeof(Evidence), StatusCodes.Status200OK)]

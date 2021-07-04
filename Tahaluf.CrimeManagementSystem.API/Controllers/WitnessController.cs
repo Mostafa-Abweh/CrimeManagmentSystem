@@ -26,12 +26,13 @@ namespace Tahaluf.CrimeManagementSystem.API.Controllers
         { return WitnessService.Create(witness); }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<Witness>), StatusCodes.Status200OK)]
-        public List<Witness> GetAll()
+        [ProducesResponseType(typeof(Task<List<Witness>>), StatusCodes.Status200OK)]
+        public Task<List<Witness>> GetAll()
         { return WitnessService.GetAll(); }
 
         [HttpGet("{Id}")]
-        public Witness GetById(int id)
+        [ProducesResponseType(typeof(Task<List<Witness>>), StatusCodes.Status200OK)]
+        public Task<List<Witness>> GetById(int id)
         { return WitnessService.GetById(id); }
 
         [HttpPut]

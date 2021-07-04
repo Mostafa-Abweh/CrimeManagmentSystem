@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Common;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 using Tahaluf.CrimeManagementSystem.Core.Repository;
@@ -22,11 +24,11 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = _dBContext.Connection.ExecuteAsync("InsertEvidence", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
-        public List<Evidence> GetAll()
+        public async Task<List<Evidence>> GetAll()
         {
-            List<Evidence> result = (List<Evidence>)_dBContext.Connection.Query<Evidence>("GetAllEvidence", commandType: CommandType.StoredProcedure);
+            var result =await _dBContext.Connection.QueryAsync<Evidence>("GetAllEvidence", commandType: CommandType.StoredProcedure);
 
-            return result;
+            return result.ToList();
         }
         public int Update(Evidence evidence)
         {
@@ -44,12 +46,12 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = _dBContext.Connection.ExecuteAsync("DeleteEvidence", p, commandType: CommandType.StoredProcedure);
             return true;
         }
-        public Evidence GetById(int id)
+        public async Task<List<Evidence>> GetById(int id)
         {
             var p = new DynamicParameters();
             p.Add("@EvidenceId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            Evidence result = (Evidence)_dBContext.Connection.Query<Evidence>("GetByIdEvidence", p, commandType: CommandType.StoredProcedure);
-            return result;
+            var  result = await _dBContext.Connection.QueryAsync<Evidence>("GetByIdEvidence", p, commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
 
     }

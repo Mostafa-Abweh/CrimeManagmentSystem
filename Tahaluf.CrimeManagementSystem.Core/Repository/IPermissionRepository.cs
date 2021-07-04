@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 
 namespace Tahaluf.CrimeManagementSystem.Core.Repository
@@ -10,7 +11,7 @@ namespace Tahaluf.CrimeManagementSystem.Core.Repository
         int Create(Permission permission);
         int Update(Permission permission);
         bool Delete(int id);
-        List<Permission> GetAll();
-        Permission GetById(int id);
+        Task<List<Permission>> GetAll();
+        Task<List<Permission>> GetById(int id);
     }
 }

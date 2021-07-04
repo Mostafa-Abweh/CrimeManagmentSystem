@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 using Tahaluf.CrimeManagementSystem.Core.Repository;
 using Tahaluf.CrimeManagementSystem.Core.Service;
@@ -15,7 +16,7 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Service
             this.LawyerRepository = _lawyerRepository;
         }
 
-        public List<Lawyer> GetAll()
+        public Task<List<Lawyer>> GetAll()
         {
             return LawyerRepository.GetAll();
         }
@@ -33,7 +34,7 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Service
         {
             return LawyerRepository.Delete(id);
         }
-        public Lawyer GetById(int id)
+        public Task<List<Lawyer>> GetById(int id)
         {
             return LawyerRepository.GetById(id);
         }

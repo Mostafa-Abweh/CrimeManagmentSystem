@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Common;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 using Tahaluf.CrimeManagementSystem.Core.Repository;
@@ -26,11 +28,11 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = _dBContext.Connection.ExecuteAsync("InsertFIR", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
-        public List<FirstInformationReport> GetAll()
+        public async Task<List<FirstInformationReport>> GetAll()
         {
-            List<FirstInformationReport> result = (List<FirstInformationReport>)_dBContext.Connection.Query<FirstInformationReport>("GetAllFIR", commandType: CommandType.StoredProcedure);
+            var result = await _dBContext.Connection.QueryAsync<FirstInformationReport>("GetAllFIR", commandType: CommandType.StoredProcedure);
 
-            return result;
+            return result.ToList();
         }
         public int Update(FirstInformationReport FIR)
         {
@@ -51,12 +53,12 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = _dBContext.Connection.ExecuteAsync("DeleteFIR", p, commandType: CommandType.StoredProcedure);
             return true;
         }
-        public FirstInformationReport GetById(int id)
+        public async Task<List<FirstInformationReport>> GetById(int id)
         {
             var p = new DynamicParameters();
             p.Add("@FIRId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            FirstInformationReport result = (FirstInformationReport)_dBContext.Connection.Query<FirstInformationReport>("GetByIdFIR", p, commandType: CommandType.StoredProcedure);
-            return result;
+            var result = await _dBContext.Connection.QueryAsync<FirstInformationReport>("GetByIdFIR", p, commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
     }
 }

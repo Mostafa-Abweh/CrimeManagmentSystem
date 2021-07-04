@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Common;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 using Tahaluf.CrimeManagementSystem.Core.Repository;
@@ -26,11 +28,11 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = _dBContext.Connection.ExecuteAsync("InsertUser", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
-        public List<User> GetAll()
+        public async Task<List<User>> GetAll()
         {
-            List<User> result = (List<User>)_dBContext.Connection.Query<User>("GetALLUser", commandType: CommandType.StoredProcedure);
+            var result = await _dBContext.Connection.QueryAsync<User>("GetALLUser", commandType: CommandType.StoredProcedure);
 
-            return result;
+            return result.ToList();
         }
         public int Update(User user)
         {
@@ -52,12 +54,12 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = _dBContext.Connection.ExecuteAsync("DeleteUser", p, commandType: CommandType.StoredProcedure);
             return true;
         }
-        public User GetById(int id)
+        public async Task<List<User>> GetById(int id)
         {
             var p = new DynamicParameters();
             p.Add("@UserId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            User result = (User)_dBContext.Connection.Query<User>("GetByIdUser", p, commandType: CommandType.StoredProcedure);
-            return result;
+            var result = await _dBContext.Connection.QueryAsync<User>("GetByIdUser", p, commandType: CommandType.StoredProcedure);
+            return result.ToList();
         }
 
 

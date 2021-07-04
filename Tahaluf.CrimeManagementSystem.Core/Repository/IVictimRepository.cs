@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Tahaluf.CrimeManagementSystem.Core.Data;
 using Tahaluf.CrimeManagementSystem.Core.DTOs;
 
@@ -11,8 +12,8 @@ namespace Tahaluf.CrimeManagementSystem.Core.Repository
         int Create(Victim victim);
         int Update(Victim victim);
         bool Delete(int id);
-        List<Victim> GetAll();
-        Victim GetById(int id);
-        List<Victim> Search(VictimDTO victimDTO);
+        Task<List<Victim>> GetAll();
+        Task<List<Victim>> GetById(int id);
+        Task<List<Victim>> Search(VictimDTO victimDTO);
     }
 }

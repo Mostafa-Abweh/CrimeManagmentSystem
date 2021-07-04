@@ -26,12 +26,13 @@ namespace Tahaluf.CrimeManagementSystem.API.Controllers
         { return FIRService.Create(FIR); }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<FirstInformationReport>), StatusCodes.Status200OK)]
-        public List<FirstInformationReport> GetAll()
+        [ProducesResponseType(typeof(Task<List<FirstInformationReport>>), StatusCodes.Status200OK)]
+        public Task<List<FirstInformationReport>> GetAll()
         { return FIRService.GetAll(); }
 
         [HttpGet("{Id}")]
-        public FirstInformationReport GetById(int id)
+        [ProducesResponseType(typeof(Task<List<FirstInformationReport>>), StatusCodes.Status200OK)]
+        public Task<List<FirstInformationReport>> GetById(int id)
         { return FIRService.GetById(id); }
 
         [HttpPut]
