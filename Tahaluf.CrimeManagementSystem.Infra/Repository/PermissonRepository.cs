@@ -19,9 +19,9 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
         {
             var p = new DynamicParameters();
 
-            p.Add("@RoleId", permission.RoleId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            
             p.Add("@PermissionName", permission.PermissionName, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("@PermissionModule", permission.PermissionModule, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@PermissionDescription", permission.PermissionDescription, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = _dBContext.Connection.ExecuteAsync("InsertPermission", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
@@ -34,10 +34,9 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
         public int Update(Permission permission)
         {
             var p = new DynamicParameters();
-            p.Add("@VictimId", permission.PermissionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
-            p.Add("@RoleId", permission.RoleId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@PermissionId", permission.PermissionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
             p.Add("@PermissionName", permission.PermissionName, dbType: DbType.String, direction: ParameterDirection.Input);
-            p.Add("@PermissionModule", permission.PermissionModule, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@PermissionDescription", permission.PermissionDescription, dbType: DbType.Int32, direction: ParameterDirection.Input);
             var result = _dBContext.Connection.ExecuteAsync("Updatepermission", p, commandType: CommandType.StoredProcedure);
             return 1;
         }
@@ -55,6 +54,7 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = await _dBContext.Connection.QueryAsync<Permission>("GetByIdPermission", p, commandType: CommandType.StoredProcedure);
             return result.ToList() ;
         }
+
 
     }
 }

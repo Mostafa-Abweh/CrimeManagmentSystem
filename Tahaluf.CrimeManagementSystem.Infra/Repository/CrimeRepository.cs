@@ -94,5 +94,255 @@ namespace Tahaluf.CrimeManagementSystem.Infra.Repository
             var result = await _dBContext.Connection.QueryAsync<Crime>("SearchJudge", p, commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
+
+
+        public bool SignVictimToCrime(VictimFile victimFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@VictimId", victimFile.VictimId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", victimFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("InsertVictimFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        } 
+        public bool SignSectionToCrime(SectionFile sectionFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@SectionId", sectionFile.SectionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", sectionFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("InsertSectionFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+        public bool SignAcussedToCrime(AcussedFile acussedFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@AcussedId", acussedFile.AcussedId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", acussedFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("InsertAcussedFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+        public bool SignWitnessToCrime(WitnessFile witnessFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@WitnessId", witnessFile.WitnessId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", witnessFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("InsertWitnessFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+        public bool SignOfficerToCrime(OfficerFile officerFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@OfficerId", officerFile.OfficerId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", officerFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("InsertOfficerFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        } 
+        public bool SignStationToCrime(PoliceStationFile policeStationFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@PoliceStationId", policeStationFile.PoliceStationId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", policeStationFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("InsertPoliceStationFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        } 
+        public bool SignLawyerToCrime(LawyerFile lawyerFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@LawyerId", lawyerFile.LawyerId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", lawyerFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("InsertLawyerFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        } 
+        public bool SignEvidenceToCrime(EvidenceFile evidenceFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@EvidenceId", evidenceFile.EvidenceId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", evidenceFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("InsertEvidenceFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+        public bool SignJudgeToCrime(JudgeFile judgeFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@JudgeId", judgeFile.JudgeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", judgeFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("InsertJudgeFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+        //****************************************************UnSign*********************************************************************
+        public bool UnSignVictimToCrime(VictimFile victimFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@VictimId", victimFile.VictimId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", victimFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("DeleteVictimFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        } 
+        public bool UnSignSectionToCrime(SectionFile sectionFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@SectionId", sectionFile.SectionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", sectionFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("DeleteSectionFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+        public bool UnSignAcussedToCrime(AcussedFile acussedFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@AcussedId", acussedFile.AcussedId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", acussedFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("DeleteAcussedFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+        public bool UnSignWitnessToCrime(WitnessFile witnessFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@WitnessId", witnessFile.WitnessId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", witnessFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("DeleteWitnessFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+        public bool UnSignOfficerToCrime(OfficerFile officerFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@OfficerId", officerFile.OfficerId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", officerFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("DeleteOfficerFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        } 
+        public bool UnSignStationToCrime(PoliceStationFile policeStationFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@PoliceStationId", policeStationFile.PoliceStationId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", policeStationFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("DeletePoliceStationFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        } 
+        public bool UnSignLawyerToCrime(LawyerFile lawyerFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@LawyerId", lawyerFile.LawyerId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", lawyerFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("DeleteLawyerFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        } 
+        public bool UnSignEvidenceToCrime(EvidenceFile evidenceFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@EvidenceId", evidenceFile.EvidenceId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", evidenceFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("DeleteEvidenceFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+        public bool UnSignJudgeToCrime(JudgeFile judgeFile) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@JudgeId", judgeFile.JudgeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", judgeFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("DeleteJudgeFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        } 
+        
+        
+        //*****************************************************UpdateSign**********************************************************************
+        
+        public bool UpdateSignVictimToCrime(VictimFile victimFile,int NewCrimeId, int NewVictimId) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@VictimId", victimFile.VictimId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewVictimId", NewVictimId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", victimFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewCrimeId", NewCrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("UpdateVictimFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        } 
+        public bool UpdateSignSectionToCrime(SectionFile sectionFile, int NewCrimeId, int NewSectionId) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@SectionId", sectionFile.SectionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewSectionId", NewSectionId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", sectionFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewCrimeId", NewCrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("UpdateSectionFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+        public bool UpdateSignAcussedToCrime(AcussedFile acussedFile, int NewCrimeId, int NewAcussedId) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@AcussedId", acussedFile.AcussedId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewAcussedId", NewAcussedId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", acussedFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewCrimeId", NewCrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("UpdateAcussedFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+        public bool UpdateSignWitnessToCrime(WitnessFile witnessFile, int NewCrimeId, int NewWitnessId) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@WitnessId", witnessFile.WitnessId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewWitnessId", NewWitnessId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", witnessFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewCrimeId", NewCrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("UpdateWitnessFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+        public bool UpdateSignOfficerToCrime(OfficerFile officerFile, int NewCrimeId, int NewOfficerId) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@OfficerId", officerFile.OfficerId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewOfficerId", NewOfficerId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", officerFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewCrimeId", NewCrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("UpdateOfficerFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        } 
+        public bool UpdateSignStationToCrime(PoliceStationFile policeStationFile, int NewCrimeId, int NewPoliceStationId) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@PoliceStationId", policeStationFile.PoliceStationId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewPoliceStationId", NewPoliceStationId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", policeStationFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewCrimeId", NewCrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("UpdatePoliceStationFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        } 
+        public bool UpdateSignLawyerToCrime(LawyerFile lawyerFile, int NewCrimeId, int NewLawyerId) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@LawyerId", lawyerFile.LawyerId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewLawyerId", NewLawyerId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", lawyerFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewCrimeId", NewCrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("UpdateLawyerFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        } 
+        public bool UpdateSignEvidenceToCrime(EvidenceFile evidenceFile, int NewCrimeId, int NewEvidenceId) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@EvidenceId", evidenceFile.EvidenceId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewEvidenceId", NewEvidenceId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", evidenceFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewCrimeId", NewCrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("UpdateEvidenceFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+        public bool UpdateSignJudgeToCrime(JudgeFile judgeFile, int NewCrimeId, int NewJudgeId) 
+        {
+            var p = new DynamicParameters();
+            p.Add("@JudgeId", judgeFile.JudgeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewJudgeId", NewJudgeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@CrimeId", judgeFile.CrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            p.Add("@NewCrimeId", NewCrimeId, dbType: DbType.Int32, direction: ParameterDirection.Input);
+            var result = _dBContext.Connection.ExecuteAsync("UpdateJudgeFile", p, commandType: CommandType.StoredProcedure);
+            return true;
+        }
+        //*****************************************GetAll****************************************************************
+        //public async Task<List<Crime>> GetAll(int id)
+        //{
+        //    var p = new DynamicParameters();
+        //    p.Add("@CrimeId", id, dbType: DbType.Int32, direction: ParameterDirection.Input);
+        //    var result = await _dBContext.Connection.QueryAsync<Crime>("GetByIdCrime", p, commandType: CommandType.StoredProcedure);
+        //    return result.ToList();
+        //}
+
     }
 }

@@ -11,6 +11,6 @@ namespace Tahaluf.CrimeManagementSystem.Core.Data
         public string RoleDescription { get; set; }
 
         public virtual ICollection<UserRoles> UserRoles { get; set; }
-        public virtual ICollection<Permission> Permissions { get; set; }
+        public virtual ICollection<RolePermissions> RolePermissions { get; set; }
     }
 }
